@@ -4,11 +4,11 @@ import {
 	Container,
 	Row,
 	Col,
-	FloatingLabel,
 	Form
 } from "react-bootstrap";
 import axios from "axios";
-import parseJWT from "./parseJWT";
+import parseJWT from "../parseJWT";
+import Endpoint from "../Endpoint";
 
 function UserInfoChanger({JWT}){
 	const [userInput, setUserInput] = useState({
@@ -19,15 +19,10 @@ function UserInfoChanger({JWT}){
 		email:''
 	});
 
-	const change = (e) => {
-		e.preventDefault();
-		setUserInput({...userInput, [e.target.name]: e.target.value, ['Content-type']: 'application/json'})
-	}
-
 	useEffect(()=>{ Submit(); },[])
 	const Submit = async (e) => {		
 		var uID = parseJWT(JWT).ID;
-		const response = await axios.get("http://localhost:5000/users/" + uID, {headers:{"Authorization":"Bearer "+JWT}}).then(resp => resp);
+		const response = await axios.get(Endpoint + "/users/" + uID, {headers:{"Authorization":"Bearer "+JWT}}).then(resp => resp);
 		console.log(response);
 		setUserInput({username:response.data.username, password:response.data.password, firstName:response.data.firstName, lastName:response.data.lastName, email:response.data.email});
 	}
@@ -53,10 +48,9 @@ function UserInfoChanger({JWT}){
 		console.log('submited')
 		e.preventDefault();
 		//axios post call
-		const response = await axios.post("http://localhost:5000/employee", userChanger.firstName);
+		const response = await axios.post(Endpoint + "/employee", userChanger.firstName);
 		console.log(response);
 	}
-
 
 	return(
 		<>
