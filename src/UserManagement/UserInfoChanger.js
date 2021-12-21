@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { 
 	Button, 
 	Container,
@@ -24,13 +25,13 @@ function UserInfoChanger({JWT}){
 	useEffect(()=>{ Submit(); },[])
 	const Submit = async (e) => {		
 		var uID = parseJWT(JWT).ID;
-		const response = await axios.get(Endpoint + "/users/" + uID, {headers:{"Authorization":"Bearer "+JWT}}).then(resp => resp);
+		const response = await axios.get(Endpoint + "/users/" + uID, {headers:{"Authorization":"Bearer " + JWT}}).then(resp => resp);
 		console.log(response);
 		setUserInput({username:response.data.username, password:response.data.password, firstName:response.data.firstName, lastName:response.data.lastName, email:response.data.email});
 	}
 
 	// Updating userInfo
-	let axiosConfig = {headers: {"Content-Type":"application/json", "Authorization":"Bearer "+JWT}};
+	let axiosConfig = {headers: {"Content-Type":"application/json", "Authorization":"Bearer " + JWT}};
 
 	const [userFirstName, setUserFirstName] = useState({
 		firstName:''
@@ -147,6 +148,17 @@ function UserInfoChanger({JWT}){
 						</Col>
 					</Form.Group>
 				</Form>
+				<Row>
+					<Col></Col>
+					<Col className = "text-center">
+						<Button className="mb-3" size="sm"  style={{backgroundColor: "#f26926", width:"25%"}}>
+							<Link to="/users" style={{color:"white", textDecoration:"none"}}>
+								Back
+							</Link>
+						</Button>
+					</Col>
+					<Col></Col>
+				</Row>
 			</Container>
 		</>
 	)

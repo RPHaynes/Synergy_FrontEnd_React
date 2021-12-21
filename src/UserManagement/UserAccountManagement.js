@@ -26,7 +26,7 @@ const UserAccountManagement = ({JWT}) => {
 	useEffect(()=>{ Submit(); },[])
 	const Submit = async (e) => {		
 		var uID = parseJWT(JWT).ID;
-		const response = await axios.get(Endpoint + "/users/" + uID, {headers:{"Authorization":"Bearer "+JWT}}).then(resp => resp);
+		const response = await axios.get(Endpoint + "/users/" + uID, {headers:{"Authorization":"Bearer " + JWT}}).then(resp => resp);
 		console.log(response);
 		setUserInput({username:response.data.username, password:response.data.password, firstName:response.data.firstName, lastName:response.data.lastName, email:response.data.email});
 	}
@@ -51,7 +51,7 @@ const UserAccountManagement = ({JWT}) => {
 								Password
 							</Form.Label>
 							<Col sm="9">
-								<Form.Control  plaintext readOnly type="password" placeholder="****************" />
+								<Form.Control  plaintext readOnly type="password" placeholder={'\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'} />
 							</Col>
 						</Form.Group>
 						<Form.Group as={Row} className="mb-3" controlId="formPlainFirstName">

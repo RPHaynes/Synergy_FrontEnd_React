@@ -1,11 +1,8 @@
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
-// import './updateReservation.css';
 import Endpoint from './Endpoint';
 
 const UpdateReservation = ()=> {
-	
 	const [formValue, updateFormValue] = React.useState({
 		reservationID: '',
 		checkin: '',
@@ -52,11 +49,14 @@ const UpdateReservation = ()=> {
 			<form className="resForm">
 				<h3>Change Reservation Date</h3>
 				<label className="labelCss"  >Your Reservation ID</label>
-					<input type="text" name="reservationID" value={formValue.reservationID} onChange={handleChange} /><br/><br/>
+				<input type="text" name="reservationID" value={formValue.reservationID} onChange={handleChange} />
+				<br/><br/>
 				<label className="labelCss"  >Check-in Date</label>
-					<input type="date" name="checkin" value={formValue.checkin} onChange={handleChange} /><br/><br/>
+				<input type="date" name="checkin" value={formValue.checkin} onChange={handleChange} />
+				<br/><br/>
 				<label className="labelCss"  >Check-out Date </label>
-					<input type="date" name="checkout" value={formValue.checkout} onChange={handleChange}	/><br/><br/>
+				<input type="date" name="checkout" value={formValue.checkout} onChange={handleChange}/>
+				<br/><br/>
 				<input type="submit" className="submission" />
 			</form>
 			<footer id="footer-placeholder"></footer>

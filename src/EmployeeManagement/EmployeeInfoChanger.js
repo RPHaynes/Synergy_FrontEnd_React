@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { 
 	Button, 
 	Container,
@@ -24,13 +25,13 @@ function EmployeeInfoChanger({JWT}){
 	useEffect(()=>{ Submit(); },[])
 	const Submit = async (e) => {		
 		var eID = parseJWT(JWT).ID;
-		const response = await axios.get(Endpoint + "/employee/" + eID, {headers:{"Authorization":"Bearer "+JWT}}).then(resp => resp);
+		const response = await axios.get(Endpoint + "/employee/" + eID, {headers:{"Authorization":"Bearer " + JWT}}).then(resp => resp);
 		console.log(response);
 		setEmployeeInput({username:response.data.username, password:response.data.password, firstName:response.data.firstName, lastName:response.data.lastName, employeeType:response.data.employeeType});
 	}
 
 	// Updating employeeInfo
-	let axiosConfig = {headers: {"Content-Type":"application/json", "Authorization":"Bearer "+JWT}};
+	let axiosConfig = {headers: {"Content-Type":"application/json", "Authorization":"Bearer " + JWT}};
 
 	const [employeeFirstName, setEmployeeFirstName] = useState({
 		firstName:''
@@ -111,6 +112,17 @@ function EmployeeInfoChanger({JWT}){
 						</Col>
 					</Form.Group>
 				</Form>
+				<Row>
+					<Col></Col>
+					<Col className = "text-center">
+						<Button className="mb-3" size="sm"  style={{backgroundColor: "#f26926", width:"25%"}}>
+							<Link to="/users" style={{color:"white", textDecoration:"none"}}>
+								Back
+							</Link>
+						</Button>
+					</Col>
+					<Col></Col>
+				</Row>
 			</Container>
 		</>
 	)
