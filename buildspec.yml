@@ -18,3 +18,5 @@ phases:
 artifacts:
   files:
     - './views/**/*'
+    discard-paths: yes
+
