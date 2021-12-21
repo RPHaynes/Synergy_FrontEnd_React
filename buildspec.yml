@@ -17,6 +17,7 @@ phases:
         - cp -rf ./build/* ./views
 artifacts:
   files:
-  - './views/**/*'
+  - '**/*'
+  base-directory: 'views'
   
 
