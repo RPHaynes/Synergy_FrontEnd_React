@@ -17,6 +17,6 @@ phases:
         - cp -rf ./build/* ./views
 artifacts:
   files:
-    - './views/**/*'
-    discard-paths: yes
+  - './views/**/*'
+  discard-paths: yes
 
